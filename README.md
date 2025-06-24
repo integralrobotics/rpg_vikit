@@ -8,12 +8,18 @@ Vikit (Vision-Kit) is a lightweight and efficient library designed to provide es
 Vikit offers support for a diverse range of camera models, including:
 
 - Pinhole + Radtan
-- Pinhole + Equidistant(Added OpenCV-based fisheye distortion correction to the equidistant_camera model in vikit_common)
+- Pinhole + Equidistant **(with OpenCV-based fisheye distortion correction)**
 - Pinhole + ATAN
 - Pinhole + Polynomial
 - Omni + Polynomial
 
 These models adapt to various camera configurations and distortion characteristics.
 
+### Project Lineage & Modifications
+This repository is a fork of the ROS2-compatible [`rpg_vikit`](https://github.com/integralrobotics/rpg_vikit) (itself derived from the [original work](https://github.com/uzh-rpg/rpg_vikit) by Chunran Zheng). Key enhancements include:
+- **Added OpenCV-based fisheye distortion correction** to the equidistant camera model in `vikit_common`.
+
 ### Acknowledgments
-Special thanks to the [rpg_vikit](https://github.com/uzh-rpg/rpg_vikit) from the [UZH-RPG group](https://rpg.ifi.uzh.ch/) for their foundational work and inspiration in the development of this library.
+Special thanks to:
+- The [rpg_vikit](https://github.com/uzh-rpg/rpg_vikit) from [UZH-RPG group](https://rpg.ifi.uzh.ch/) for foundational work
+- [integralrobotics](https://github.com/integralrobotics) for the ROS2-compatible port
