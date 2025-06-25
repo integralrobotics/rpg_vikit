@@ -17,14 +17,15 @@ These models accommodate diverse camera configurations and distortion characteri
 
 ### Project Lineage
 This repository is maintained as a downstream fork with the following lineage:
-1. Original work: [xuankuzcr/rpg_vikit](https://github.com/xuankuzcr/rpg_vikit) by Chunran Zheng
-2. ROS2-compatible port: [integralrobotics/rpg_vikit](https://github.com/integralrobotics/rpg_vikit)
+1. Original work: [xuankuzcr/rpg_vikit](https://github.com/xuankuzcr/rpg_vikit) by Chunran Zheng.
+2. ROS2-compatible port: [integralrobotics/rpg_vikit](https://github.com/integralrobotics/rpg_vikit).
 
 ### Enhancements
 The following key improvements have been implemented:
-- Integrated OpenCV-based fisheye distortion correction into the equidistant camera model (`vikit_common` module)
+- Integrated OpenCV-based fisheye distortion correction into the equidistant camera model (`vikit_common` module).
 
 ### Acknowledgments
 Special recognition to:
-- [UZH-RPG group](https://rpg.ifi.uzh.ch/) for foundational [rpg_vikit](https://github.com/uzh-rpg/rpg_vikit) research
-- [integralrobotics](https://github.com/integralrobotics) for the ROS2 compatibility implementation
+- [UZH-RPG group](https://rpg.ifi.uzh.ch/) for foundational [rpg_vikit](https://github.com/uzh-rpg/rpg_vikit) research.
+- [Chunran Zheng](https://github.com/xuankuzcr/rpg_vikit) for developing the ROS1-compatible fork [xuankuzcr/rpg_vikit](https://github.com/xuankuzcr/rpg_vikit) specifically adapted for FAST-LIVO2.
+- [integralrobotics](https://github.com/integralrobotics) for porting Chunran Zheng's version to ROS2 in their [rpg_vikit implementation](https://github.com/integralrobotics/rpg_vikit).
