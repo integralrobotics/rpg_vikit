@@ -108,4 +108,25 @@ world2cam(const Vector2d& uv) const
   return px;
 }
 
+void EquidistantCamera::undistortImage(const cv::Mat& input, cv::Mat& output) const
+{
+  // Return original image if no distortion parameters are available
+  if(!distortion_) {
+    output = input.clone();
+    return;
+  }
+  // Build camera intrinsic matrix K
+  cv::Mat K = cv::Mat::eye(3, 3, CV_64F);
+  K.at<double>(0,0) = fx_;  // Focal length in x direction
+  K.at<double>(1,1) = fy_;  // Focal length in y direction
+  K.at<double>(0,2) = cx_;  // Principal point x-coordinate
+  K.at<double>(1,2) = cy_;  // Principal point y-coordinate
+  // Prepare distortion coefficients (k1, k2, k3, k4)
+  cv::Mat D = (cv::Mat_<double>(4,1) << k1_, k2_, k3_, k4_);
+  // Create new camera matrix (using same intrinsics by default)
+  cv::Mat new_K = K.clone();
+  // Apply fisheye lens undistortion using OpenCV
+  cv::fisheye::undistortImage(input, output, K, D, new_K);
+}
+
 } // end namespace vk
