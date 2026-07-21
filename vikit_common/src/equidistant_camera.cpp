@@ -108,4 +108,27 @@ world2cam(const Vector2d& uv) const
   return px;
 }
 
+void EquidistantCamera::undistortImage(const cv::Mat& input, cv::Mat& output) const
+{
+  // Return original image if no distortion parameters are available
+  if(!distortion_) {
+    output = input.clone();
+    return;
+  }
+  // Camera intrinsic matrix K and fisheye distortion coefficients (k1..k4).
+  cv::Mat K = (cv::Mat_<double>(3, 3) << fx_, 0.0, cx_,
+                                         0.0, fy_, cy_,
+                                         0.0, 0.0, 1.0);
+  cv::Mat D = (cv::Mat_<double>(4, 1) << k1_, k2_, k3_, k4_);
+  // Estimate a new camera matrix that keeps the field of view, instead of
+  // reusing K, which would crop the rectified image for wide fisheye lenses.
+  // balance in [0, 1] trades retained field of view (1.0) against black
+  // borders (0.0); tune it to the lens if needed.
+  const double balance = 0.0;
+  cv::Mat new_K;
+  cv::fisheye::estimateNewCameraMatrixForUndistortRectify(
+      K, D, input.size(), cv::Mat::eye(3, 3, CV_64F), new_K, balance);
+  cv::fisheye::undistortImage(input, output, K, D, new_K);
+}
+
 } // end namespace vk

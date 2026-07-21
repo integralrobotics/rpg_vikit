@@ -137,6 +137,9 @@ public:
   virtual double fy() const { return fy_; };
   virtual double cx() const { return cx_; };
   virtual double cy() const { return cy_; };
+
+  // Undistort the input image to correct lens distortion
+  void undistortImage(const cv::Mat& input, cv::Mat& output) const;
 };
 
 } // end namespace vk
